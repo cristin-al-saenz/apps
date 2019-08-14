@@ -2,70 +2,81 @@
 {:navgroup: .navgroup}
 {:topicgroup: .topicgroup}
 
-{: .toc subcollection="creating-apps" audience="service" href="/docs/apps/index.html"}
+{: .toc subcollection="creating-apps" audience="platform" href="docs/apps?topic=creating-apps-getting-started" path="apps"}
 创建应用程序
 
     {: .navgroup id="learn"}
     index.md
-    development_process.md
     best-practice.md
     patterns.md
+
+    {: .topicgroup}
+    相关链接
+        [Strategies for resilient applications](/tutorials/solution-tutorials-strategies-for-resilient-applications){: new_window}
+        [Continuous deployment to Kubernetes](/tutorials/solution-tutorials-continuous-deployment-to-kubernetes){: new_window}
     {: .navgroup-end}
 
     {: .navgroup id="howto"}
     {: .topicgroup}
     创建应用程序
-        tutorials/tutorial_web.md
-        tutorials/tutorial_bff.md
-        tutorials/tutorial_custom.md
+        tutorials/tutorial_starter-kit.md
+        starter-kits.md
+        tutorials/tutorial_scratch.md
+        tutorials/tutorial_byoc.md
+        create-deploy-cli.md
+        tutorials/tutorial_code-pattern.md
         tutorials/tutorial_microservice.md
         tutorials/tutorial_mobile.md
-        create-deploy-cli.md
-        deploying/functions.md
+        functions.md
+        tutorials/tutorial_mendix_getting_started.md
+        [打算使用语言？](https://{DomainName}/docs/home/build)
 
     {: .topicgroup}
-    部署和集成应用程序
+    部署应用程序
+        hosting.md
         dep-app-tool.md
-        vsi-deploy.md
-        deploying/containers.md
-        deploying/crypto.md
+        tutorials/tutorial_starter_kube.md
+        tutorials/tutorial_byoc_kube.md
+        tutorials/tutorial_mendix_kubernetes.md
 
+    {: .topicgroup}
+    配置
+        reqnsi.md
+        creds_overview.md
+        mngdomains.md
+        secapps.md
 
-    reqnsi.md
-    mngapps.md
-    updapps.md
-    secapps.md
-    building-apps.md
-    hosting.md
+    {: .topicgroup}
+    将应用程序与 DevOps 集成
+        toolchains.md
+        insights.md
+        monitor.md
     {: .navgroup-end}
 
     {: .navgroup id="reference"}
-    [IBM Cloud Developer Tools 命令行参考](https://console.bluemix.net/docs/cli/idt/commands.html)
+    [IBM Cloud Developer Tools 命令行插件](/docs/cli?topic=cloud-cli-getting-started)
 
     {: .topicgroup}
     IBM Cloud 开发者仪表板
-        [Apple](https://console.bluemix.net/developer/appledevelopment/dashboard)
-        [财务](https://console.bluemix.net/developer/finance/dashboard)
-        [移动](https://console.bluemix.net/developer/mobile/dashboard)
-        [安全性](https://console.bluemix.net/developer/security/dashboard)
-        [Watson](https://console.bluemix.net/developer/watson/dashboard)
-        [Web 应用程序](https://console.bluemix.net/developer/appservice/dashboard)
+        [Apple](https://cloud.ibm.com/developer/appledevelopment/dashboard)
+        [财务](https://cloud.ibm.com/developer/finance/dashboard)
+        [移动](https://cloud.ibm.com/developer/mobile/dashboard)
+        [安全性](https://cloud.ibm.com/developer/security/dashboard)
+        [Watson](https://cloud.ibm.com/developer/watson/dashboard)
+        [Web 应用程序](https://cloud.ibm.com/developer/appservice/dashboard)
 
     {: .topicgroup}
-    应用程序内容
-        projects/compose_file.md
-        projects/java_project_contents.md
-        projects/node_project_contents.md
-        projects/python_project_contents.md
-        projects/swift_project_contents.md
+    IBM Cloud 编程指南
+        [Go](/go/go-getting-started)
+        [Java](/java/java-getting-started)
+        [Swift](/swift/swift-getting-started)
+        [Node](/node/nodejs-node-getting-started)
 
     at_events_devx.md
     {: .navgroup-end}
 
     {: .navgroup id="help"}
     ts_apps.md
+    faqs.md
     [IBM Cloud Slack developer-tools 通道](https://slack-invite-ibm-cloud-tech.mybluemix.net/)
-    [StackOverflow](http://stackoverflow.com/search?q=bluemix-dev-services+ibm-bluemix)
-    [Cloud Functions API 参考](https://console.bluemix.net/apidocs/functions)
-    [移动 SDK](https://console.bluemix.net/docs/openwhisk/openwhisk_mobile_sdk.html#mobile-sdk)
     {: .navgroup-end}

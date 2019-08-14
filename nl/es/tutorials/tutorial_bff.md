@@ -1,8 +1,12 @@
 ---
 
 copyright:
-  years: 2016, 2017, 2018
-lastupdated: "2018-10-10"
+  years: 2016, 2019
+lastupdated: "2019-03-18"
+
+keywords: apps, backend-for-frontend app, bff, developer tools, Node.js, Java, Swift, DevOps toolchain
+
+subcollection: creating-apps
 
 ---
 
@@ -11,68 +15,72 @@ lastupdated: "2018-10-10"
 {:screen: .screen}
 {:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
-# Creación de una API de programa de fondo para programa de usuario (BFF)
-{: #tutorial}
+# Creación de una app de programa de fondo para programa de usuario (BFF)
+{: #tutorial-bff}
 
-Puede crear una app a partir de un iniciador de programa de fondo para programa de usuario (BFF - Backend-For-Frontend). Utilice estos iniciadores para compilar API de programas de fondo para programas de usuario (BFF) en Node.js, Java o Swift utilizando distintas infraestructuras: Express.js, MicroProfile/Java EE, Kitura o Spring. Decida la forma en la que instalar las herramientas que necesita, compile y ejecute la app localmente y despliéguelo en la nube.
+Puede crear una aplicación a partir de un iniciador de programa de fondo para programa de usuario (BFF - Backend-For-Frontend). Utilice estos iniciadores para compilar apps de programas de fondo para programas de usuario (BFF) en Node.js, Java&reg o Swift utilizando distintas infraestructuras: Express.js, MicroProfile/Java&reg EE, Kitura o Spring. Decida la forma en la que instalar las herramientas que necesita, compile y ejecute la app localmente y despliéguela en la nube.
 {: shortdesc}
 
-## Paso 1. Instalar las herramientas
-{: #install-tools}
+## Paso 1. Antes de empezar
+{: #prereqs-bff}
 
-Instale las [herramientas del desarrollador](/docs/cli/index.html).
-
-Docker se instala como parte de las herramientas de desarrollador. Docker debe estar en ejecución para que funcionen los mandatos de compilación. Debe crear una cuenta de Docker, ejecutar la app de Docker e iniciar la sesión.
+* Instale las [herramientas del desarrollador](/docs/cli?topic=cloud-cli-ibmcloud-cli).
+* Docker se instala como parte de las herramientas de desarrollador. Docker debe estar en ejecución para que funcionen los mandatos de compilación. Debe crear una cuenta de Docker, ejecutar la app de Docker e iniciar la sesión.
+* Si tiene intención de desplegar la app en {{site.data.keyword.cfee_full}}, debe [preparar la cuenta de {{site.data.keyword.cloud_notm}}](/docs/cloud-foundry?topic=cloud-foundry-prepare).
 
 ## Paso 2. Crear una app
-{: #create-devex}
+{: #create-bff}
 
 Cree una app en {{site.data.keyword.cloud}} {{site.data.keyword.dev_console}}.
 
-1. En la página [Kits de inicio ![Icono de enlace externo](../../icons/launch-glyph.svg "Icono de enlace externo")](https://console.ng.bluemix.net/developer/appservice/starter-kits/) de la {{site.data.keyword.dev_console}}, seleccione un kit de inicio para su lenguaje. Por ejemplo, para una aplicación Node.js, vaya a **Express.js Backend** y pulse **Seleccionar kit de inicio**.
-
+1. En la página [Kits de inicio](https://{DomainName}/developer/appservice/starter-kits/){: new_window} ![Icono de enlace externo](../../icons/launch-glyph.svg "Icono de enlace externo") de la {{site.data.keyword.dev_console}}, seleccione un kit de inicio para su lenguaje. Por ejemplo, para una aplicación Node.js, vaya a **Express.js Backend** y pulse **Seleccionar kit de inicio**.
 2. Especifique el nombre de la app. En esta guía de aprendizaje, utilice `ExpressBackend`.
+3. Especifique un nombre de host exclusivo, por ejemplo, `abc-devhost`. Este nombre de host es la ruta de la app, `abc-devhost.mybluemix.net`.
+4. Opcional. Proporcione etiquetas para clasificar la app. Para obtener más información, consulte [Cómo trabajar con etiquetas](/docs/resources?topic=resources-tag).
+5. Seleccione el idioma y la infraestructura. Es posible que algunos kits de inicio solo estén disponibles en un idioma.
+6. Seleccione el plan de precios. Hay una opción gratuita que puede utilizar para esta guía de aprendizaje.
+7. Pulse **Crear**.
 
-3. Especifique un nombre de host exclusivo, por ejemplo, `abc-devhost`. Este nombre de host es la ruta de la app, `abc-devhost.mybluemix.net`
-4. Seleccione el idioma y la infraestructura. Es posible que algunos kits de inicio solo estén disponibles en un idioma.
-5. Seleccione el plan de precios. Hay una opción gratuita que puede utilizar para esta guía de aprendizaje.
-6. Pulse **Crear**.
+El dominio compartido predeterminado es `mybluemix.net`, pero `appdomain.cloud` es otra opción de dominio que puede utilizar. Para obtener más información sobre cómo migrar a `appdomain.cloud`, consulte
+[Actualización del dominio](/docs/apps/tutorials?topic=creating-apps-update-domain).
+{: tip}
 
-## Paso 3. Añadir recursos (opcional)
-{: #add-services}
+## Paso 3. Añadir servicios (opcional)
+{: #resources-bff}
 
-Puede añadir recursos para mejorar la app con la potencia cognitiva de Watson, para añadir servicios móviles o servicios de seguridad. Para esta guía de aprendizaje, añada un lugar para gestionar los datos.
+Puede añadir servicios para mejorar la app con la potencia cognitiva de Watson, para añadir servicios móviles o servicios de seguridad. Para esta guía de aprendizaje, añada un lugar para gestionar los datos.
 
-1. En la ventana de servicio de la app, pulse **Añadir recurso**.
+1. En la página **Detalles de la app**, pulse **Añadir servicio**.
 2. Seleccione el tipo de servicio que desee. Por ejemplo, seleccione **Datos** > **Siguiente** > **Cloudant** > **Siguiente**.
 3. Seleccione el plan de precios. Hay una opción gratuita que puede utilizar para esta guía de aprendizaje.
 4. Pulse **Crear**.
 
 ## Paso 4. Crear una cadena de herramientas de DevOps
-{: #add-toolchain}
+{: #toolchain-bff}
 
-La habilitación de una cadena de herramientas crea un entorno de desarrollo en equipo para la app. Cuando se crea una cadena de herramientas, el servicio de app crea un repositorio Git, donde puede ver el código fuente, clonar la app y crear y gestionar problemas. También es posible acceder a un entorno de laboratorio Git dedicado y a un conducto de entrega continua. Se personalizan en la plataforma de despliegue que elija, ya sea Kubernetes o Cloud Foundry.
+La habilitación de una cadena de herramientas crea un entorno de desarrollo en equipo para la app. Cuando se crea una cadena de herramientas, el servicio de app crea un repositorio Git, donde puede ver el código fuente, clonar la app y crear y gestionar problemas. También es posible acceder a un entorno de laboratorio Git dedicado y a un conducto de entrega continua. Están personalizados para el destino de despliegue que elija, que puede ser [Kubernetes](/docs/containers?topic=containers-container_index), [Cloud Foundry](/docs/cloud-foundry-public?topic=cloud-foundry-public-about-cf), [{{site.data.keyword.cfee_full_notm}}](/docs/cloud-foundry?topic=cloud-foundry-about) o [Servidor virtual (VSI)](/docs/vsi?topic=virtual-servers-getting-started-with-virtual-servers).
 
-La entrega continua está habilitada para algunas aplicaciones. Puede habilitar la entrega continua para automatizar compilaciones, pruebas y despliegues a través de Delivery Pipeline y GitHub.
+Todas las cadenas de herramientas creadas a partir de un panel de control de desarrollador de {{site.data.keyword.cloud_notm}} se configuran para un despliegue automático.
+{: note}
 
-1. En la ventana de servicio de la app, pulse **Desplegar en la nube**.
-2. Seleccione un método de despliegue. Configure el método de despliegue de acuerdo con las instrucciones para el método que elija.
-
-    * Desplegar en un clúster Kubernetes. Cree un clúster de hosts, denominados nodos de trabajador, para desplegar y gestionar contenedores de aplicaciones de alta disponibilidad. Puede crear un clúster o desplegar en un clúster existente.
-
-    * Desplegar con Cloud Foundry, donde no necesita gestionar la infraestructura subyacente.
+1. En la página **Detalles de la app**, pulse **Configurar entrega continua**.
+2. Seleccione un destino de despliegue. Configure el destino de despliegue de acuerdo con las instrucciones correspondientes al método que elija:
+  * **Desplegar en el [servicio IBM Kubernetes](/docs/containers?topic=containers-container_index)**. Esta opción crea un clúster de hosts, denominado nodos trabajadores, para desplegar y gestionar contenedores de aplicaciones de alta disponibilidad. Puede crear un clúster o desplegar en un clúster existente.
+  * **Desplegar en Cloud Foundry**. Esta opción despliega la app nativa de la nube sin necesidad de gestionar la infraestructura subyacente. Si la cuenta tiene acceso a {{site.data.keyword.cfee_full_notm}}, puede seleccionar el tipo de desplegador de **[nube pública](/docs/cloud-foundry-public?topic=cloud-foundry-public-about-cf)** o de **[entorno de empresa](/docs/cloud-foundry?topic=cloud-foundry-about)**, que puede utilizar para crear y gestionar entornos aislados para alojar aplicaciones de Cloud Foundry exclusivamente para su empresa.
+  * **Desplegar en un [servidor virtual](/docs/vsi?topic=virtual-servers-getting-started-with-virtual-servers)**. Esta opción proporciona una instancia de servidor virtual, carga una imagen que incluye la app, crea una cadena de herramientas DevOps e inicia automáticamente el primer ciclo de despliegue.
 
 ## Paso 5. Creación y ejecución de la app localmente
-{: #build-run}
+{: #build-run-bff}
 
 El despliegue de la app en la nube en el último paso ha creado una cadena de herramientas. Una cadena de herramientas crea un repositorio Git para la app donde puede encontrar el código allí. Siga estos pasos para acceder a su repositorio. Puede compilar la app localmente para probarla antes de enviarla por push a la nube.
 
-1. En la ventana de servicio de la app, pulse **Descargar código** o **Clonar el repositorio** para trabajar con el código localmente.
+1. En la página **Detalles de la app**, pulse **Descargar código** o **Clonar el repositorio** para trabajar con el código de manera local.
 2. Importe la app a su entorno de desarrollo integrado.
 3. Modifique el código.
-4. Configure [Autenticación de Git](/docs/services/ContinuousDelivery/git_working.html#git_authentication) añadiendo una señal de acceso personal.
-5. Inicie sesión en la interfaz de línea de mandatos de {{site.data.keyword.Bluemix}}. Si su organización utiliza inicios de sesión federados, utilice la opción `-sso`.
+4. Configure [Autenticación de Git](/docs/services/ContinuousDelivery?topic=ContinuousDelivery-git_working#git_authentication) añadiendo una señal de acceso personal.
+5. Inicie sesión en la interfaz de línea de mandatos de {{site.data.keyword.cloud_notm}}. Si su organización utiliza inicios de sesión federados, utilice la opción `-sso`.
 
   ```bash
   ibmcloud login -sso
@@ -110,9 +118,10 @@ El despliegue de la app en la nube en el último paso ha creado una cadena de he
 10.  Abra el navegador en `http://localhost:3000`. Es posible que el número de puerto sea distinto en función del tiempo de ejecución elegido.
 
 ## Paso 6. Desplegar la app
-{: #deploy}
+{: #deploy-bff}
 
 ### Desplegar utilizando una cadena de herramientas
+{: #deploy-bff-toolchain}
 
 Puede desplegar la app en {{site.data.keyword.cloud_notm}} de varias formas, pero una cadena de herramientas de DevOps es la mejor forma de desplegar apps de producción. Con una cadena de herramientas de DevOps, puede automatizar fácilmente despliegues en muchos entornos y añadir rápidamente servicios de supervisión, de registro y de alertas para ayudar a gestionar su app a medida que crece.
 
@@ -120,11 +129,12 @@ Con una cadena de herramientas correctamente configurada, un ciclo de despliegue
 
 También puede desplegar manualmente su app desde su cadena de herramientas de DevOps:
 
-1. En la ventana Detalles de la app, pulse **Ver cadena de herramientas**.
+1. En la página **Detalles de la app**, pulse **Ver cadena de herramientas**.
 
 2. Pulse **Conducto de entrega** donde puede iniciar compilaciones, gestionar el despliegue y ver registros e historiales.
 
 ### Desplegar utilizando el {{site.data.keyword.dev_cli_short}}
+{: #deploy-bff-cli}
 
 Para desplegar la app en Cloud Foundry, especifique el mandato siguiente:
 
@@ -141,6 +151,16 @@ ibmcloud dev deploy --target <container>
 {: pre}
 
 ## Paso 7. Verificar que la app se está ejecutando
-{: #verify}
+{: #verify-bff}
 
-Después de desplegar la app, el conducto o la línea de mandatos de DevOps le apunta al URL para la app, por ejemplo `abc-devhost.mybluemix.net`. Vaya a ese URL en el navegador.
+Después de desplegar la app, el conducto de entrega o la línea de mandatos le apunta al URL para la app.
+
+1. Desde la cadena de herramientas de DevOps, pulse **Delivery Pipeline** y luego seleccione **Etapa de despliegue**.
+2. Pulse **Ver registros e historial**.
+3. En el archivo de registro, busque el URL de la aplicación:
+
+    Al final del archivo de registro, busque la palabra `urls` o `ver`. Por ejemplo, es posible que vea una línea en el archivo de registro parecida a `urls: my-app-devhost.mybluemix.net` o a `Ver el estado de la aplicación en: http://<ipaddress>:<port>/health`.
+
+4. Vaya al URL en el navegador. Si la app se está ejecutando, se muestra un mensaje que incluye `Enhorabuena` o `{"status":"UP"}`.
+
+Si utiliza la línea de mandatos, ejecute el mandato [`ibmcloud dev view`](/docs/cli/idt?topic=cloud-cli-idt-cli#view) para ver el URL de la app. Luego vaya al URL en el navegador.

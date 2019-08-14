@@ -2,70 +2,81 @@
 {:navgroup: .navgroup}
 {:topicgroup: .topicgroup}
 
-{: .toc subcollection="creating-apps" audience="service" href="/docs/apps/index.html"}
+{: .toc subcollection="creating-apps" audience="platform" href="docs/apps?topic=creating-apps-getting-started" path="apps"}
 앱 작성
 
     {: .navgroup id="learn"}
     index.md
-    development_process.md
     best-practice.md
     patterns.md
+
+    {: .topicgroup}
+    관련 링크
+        [복원성 애플리케이션에 대한 전략](/tutorials/solution-tutorials-strategies-for-resilient-applications){: new_window}
+        [Kubernetes에 대한 지속적 배치](/tutorials/solution-tutorials-continuous-deployment-to-kubernetes){: new_window}
     {: .navgroup-end}
 
     {: .navgroup id="howto"}
     {: .topicgroup}
     앱 작성
-        tutorials/tutorial_web.md
-        tutorials/tutorial_bff.md
-        tutorials/tutorial_custom.md
+        tutorials/tutorial_starter-kit.md
+        starter-kits.md
+        tutorials/tutorial_scratch.md
+        tutorials/tutorial_byoc.md
+        create-deploy-cli.md
+        tutorials/tutorial_code-pattern.md
         tutorials/tutorial_microservice.md
         tutorials/tutorial_mobile.md
-        create-deploy-cli.md
-        deploying/functions.md
+        functions.md
+        tutorials/tutorial_mendix_getting_started.md
+        [언어 사용을 원하십니까?](https://{DomainName}/docs/home/build)
 
     {: .topicgroup}
-    앱 배치 및 통합
+    앱 배치
+        hosting.md
         dep-app-tool.md
-        vsi-deploy.md
-        deploying/containers.md
-        deploying/crypto.md
+        tutorials/tutorial_starter_kube.md
+        tutorials/tutorial_byoc_kube.md
+        tutorials/tutorial_mendix_kubernetes.md
 
+    {: .topicgroup}
+    구성
+        reqnsi.md
+        creds_overview.md
+        mngdomains.md
+        secapps.md
 
-    reqnsi.md
-    mngapps.md
-    updapps.md
-    secapps.md
-    building-apps.md
-    hosting.md
+    {: .topicgroup}
+    앱을 DevOps와 통합
+        toolchains.md
+        insights.md
+        monitor.md
     {: .navgroup-end}
 
     {: .navgroup id="reference"}
-    [IBM Cloud Developer Tools 명령행 참조](https://console.bluemix.net/docs/cli/idt/commands.html)
+    [IBM Cloud Developer Tools 명령행 플러그인](/docs/cli?topic=cloud-cli-getting-started)
 
     {: .topicgroup}
     IBM Cloud 개발자 대시보드
-        [Apple](https://console.bluemix.net/developer/appledevelopment/dashboard)
-        [금융](https://console.bluemix.net/developer/finance/dashboard)
-        [모바일](https://console.bluemix.net/developer/mobile/dashboard)
-        [보안](https://console.bluemix.net/developer/security/dashboard)
-        [Watson](https://console.bluemix.net/developer/watson/dashboard)
-        [웹 앱](https://console.bluemix.net/developer/appservice/dashboard)
+        [Apple](https://cloud.ibm.com/developer/appledevelopment/dashboard)
+        [금융](https://cloud.ibm.com/developer/finance/dashboard)
+        [모바일](https://cloud.ibm.com/developer/mobile/dashboard)
+        [보안](https://cloud.ibm.com/developer/security/dashboard)
+        [Watson](https://cloud.ibm.com/developer/watson/dashboard)
+        [웹 앱](https://cloud.ibm.com/developer/appservice/dashboard)
 
     {: .topicgroup}
-    앱 컨텐츠
-        projects/compose_file.md
-        projects/java_project_contents.md
-        projects/node_project_contents.md
-        projects/python_project_contents.md
-        projects/swift_project_contents.md
+IBM Cloud 프로그래밍 안내서
+        [Go](/go/go-getting-started)
+        [Java](/java/java-getting-started)
+        [Swift](/swift/swift-getting-started)
+        [Node](/node/nodejs-node-getting-started)
 
     at_events_devx.md
     {: .navgroup-end}
 
     {: .navgroup id="help"}
     ts_apps.md
-    [IBM Cloud Slack 개발자 도구 채널](https://slack-invite-ibm-cloud-tech.mybluemix.net/)
-    [StackOverflow](http://stackoverflow.com/search?q=bluemix-dev-services+ibm-bluemix)
-    [Cloud Functions API 참조](https://console.bluemix.net/apidocs/functions)
-    [모바일 SDK](https://console.bluemix.net/docs/openwhisk/openwhisk_mobile_sdk.html#mobile-sdk)
+    faqs.md
+    [IBM Cloud Slack developer-tools 채널](https://slack-invite-ibm-cloud-tech.mybluemix.net/)
     {: .navgroup-end}

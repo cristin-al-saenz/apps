@@ -2,70 +2,81 @@
 {:navgroup: .navgroup}
 {:topicgroup: .topicgroup}
 
-{: .toc subcollection="creating-apps" audience="service" href="/docs/apps/index.html"}
+{: .toc subcollection="creating-apps" audience="platform" href="docs/apps?topic=creating-apps-getting-started" path="apps"}
 建立應用程式
 
     {: .navgroup id="learn"}
     index.md
-    development_process.md
     best-practice.md
     patterns.md
+
+    {: .topicgroup}
+    相關鏈結
+        [回復型應用程式的策略](/tutorials/solution-tutorials-strategies-for-resilient-applications){: new_window}
+        [持續部署至 Kubernetes](/tutorials/solution-tutorials-continuous-deployment-to-kubernetes){: new_window}
     {: .navgroup-end}
 
     {: .navgroup id="howto"}
     {: .topicgroup}
     建立應用程式
-        tutorials/tutorial_web.md
-        tutorials/tutorial_bff.md
-        tutorials/tutorial_custom.md
+        tutorials/tutorial_starter-kit.md
+        starter-kits.md
+        tutorials/tutorial_scratch.md
+        tutorials/tutorial_byoc.md
+        create-deploy-cli.md
+        tutorials/tutorial_code-pattern.md
         tutorials/tutorial_microservice.md
         tutorials/tutorial_mobile.md
-        create-deploy-cli.md
-        deploying/functions.md
+        functions.md
+        tutorials/tutorial_mendix_getting_started.md
+        [想要使用某個語言？](https://{DomainName}/docs/home/build)
 
     {: .topicgroup}
-    部署及整合應用程式
+    部署應用程式
+        hosting.md
         dep-app-tool.md
-        vsi-deploy.md
-        deploying/containers.md
-        deploying/crypto.md
+        tutorials/tutorial_starter_kube.md
+        tutorials/tutorial_byoc_kube.md
+        tutorials/tutorial_mendix_kubernetes.md
 
+    {: .topicgroup}
+    配置
+        reqnsi.md
+        creds_overview.md
+        mngdomains.md
+        secapps.md
 
-    reqnsi.md
-    mngapps.md
-    updapps.md
-    secapps.md
-    building-apps.md
-    hosting.md
+    {: .topicgroup}
+    整合應用程式與 DevOps
+        toolchains.md
+        insights.md
+        monitor.md
     {: .navgroup-end}
 
     {: .navgroup id="reference"}
-    [IBM Cloud Developer Tools 指令行參考資料](https://console.bluemix.net/docs/cli/idt/commands.html)
+    [IBM Cloud Developer Tools 指令行外掛程式](/docs/cli?topic=cloud-cli-getting-started)
 
     {: .topicgroup}
-    IBM 開發人員儀表板
-        [Apple](https://console.bluemix.net/developer/appledevelopment/dashboard)
-        [財務](https://console.bluemix.net/developer/finance/dashboard)
-        [行動](https://console.bluemix.net/developer/mobile/dashboard)
-        [安全](https://console.bluemix.net/developer/security/dashboard)
-        [Watson](https://console.bluemix.net/developer/watson/dashboard)
-        [Web 應用程式](https://console.bluemix.net/developer/appservice/dashboard)
+    IBM Cloud 開發人員儀表板
+        [Apple](https://cloud.ibm.com/developer/appledevelopment/dashboard)
+        [財務](https://cloud.ibm.com/developer/finance/dashboard)
+        [行動](https://cloud.ibm.com/developer/mobile/dashboard)
+        [安全](https://cloud.ibm.com/developer/security/dashboard)
+        [Watson](https://cloud.ibm.com/developer/watson/dashboard)
+        [Web 應用程式](https://cloud.ibm.com/developer/appservice/dashboard)
 
     {: .topicgroup}
-    應用程式內容
-        projects/compose_file.md
-        projects/java_project_contents.md
-        projects/node_project_contents.md
-        projects/python_project_contents.md
-        projects/swift_project_contents.md
+    IBM Cloud 程式設計手冊
+        [Go](/go/go-getting-started)
+        [Java](/java/java-getting-started)
+        [Swift](/swift/swift-getting-started)
+        [Node](/node/nodejs-node-getting-started)
 
     at_events_devx.md
     {: .navgroup-end}
 
     {: .navgroup id="help"}
     ts_apps.md
-    [IBM Cloud Slack developer-tools 頻道](https://slack-invite-ibm-cloud-tech.mybluemix.net/)
-    [StackOverflow](http://stackoverflow.com/search?q=bluemix-dev-services+ibm-bluemix)
-    [Cloud Functions API 參考資料](https://console.bluemix.net/apidocs/functions)
-    [行動 SDK](https://console.bluemix.net/docs/openwhisk/openwhisk_mobile_sdk.html#mobile-sdk)
+    faqs.md
+    [IBM Cloud Slack 開發人員工具頻道](https://slack-invite-ibm-cloud-tech.mybluemix.net/)
     {: .navgroup-end}

@@ -1,8 +1,12 @@
 ---
 
 copyright:
-  years: 2016, 2017, 2018
-lastupdated: "2018-10-10"
+  years: 2016, 2019
+lastupdated: "2019-06-13"
+
+keywords: apps, microservice, developer tools, Node.js, Java, Python, DevOps toolchain, toolchain, cli, create microservice, microservice tutorial
+
+subcollection: creating-apps
 
 ---
 
@@ -11,66 +15,75 @@ lastupdated: "2018-10-10"
 {:screen: .screen}
 {:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
+{:note: .note}
 
 # Creating a microservice
-{: #tutorial}
+{: #tutorial-microservice}
 
-You can create an app from a Microservice Basic Starter. Use these starters to build a microservice backend for Node, Java, or Python with a choice of web frameworks. You can see how to install the tools you need, build, and run the app locally and deploy it to the cloud.
+You can create an application from a Microservice Basic Starter. Use these starters to build a microservice backend for Node, Java, or Python with a choice of web frameworks. You can see how to install the tools you need, build, and run the app locally and deploy it to the cloud.
 {: shortdesc}
 
 ## Step 1. Install the tools
-{: #install-tools}
+{: #prereqs-microservice}
 
-Install the [developer tools](/docs/cli/index.html).
-
-Docker is installed as part of the developer tools. Docker must be running for the build commands to work. You must create a Docker account, run the Docker app, and sign in.
+* Install the [developer tools](/docs/cli?topic=cloud-cli-getting-started).
+* Docker is installed as part of the developer tools. Docker must be running for the build commands to work. You must create a Docker account, run the Docker app, and sign in.
+* If you plan to deploy your app to [{{site.data.keyword.cfee_full}}](/docs/cloud-foundry?topic=cloud-foundry-about), you must [prepare your {{site.data.keyword.cloud_notm}} account](/docs/cloud-foundry?topic=cloud-foundry-prepare).
 
 ## Step 2. Create an app
-{: #create-devex}
+{: #create-microservice}
 
 Create an app in the {{site.data.keyword.cloud}} {{site.data.keyword.dev_console}}:
 
-1. From the [Starter Kits ![External link icon](../../icons/launch-glyph.svg "External link icon")](https://console.ng.bluemix.net/developer/appservice/starter-kits/) page in the {{site.data.keyword.dev_console}}, select a Starter Kit for your language. For example, for a Node.js application, go to **Express.js Microservice** and click **Select Starter Kit**.
+1. From the [Starter Kits](https://{DomainName}/developer/appservice/starter-kits){: new_window} ![External link icon](../../icons/launch-glyph.svg "External link icon") page in the {{site.data.keyword.dev_console}}, select a Starter Kit for your language. For example, for a Node.js app, go to **Express.js Microservice** and click **Select Starter Kit**.
 2. Enter your app name. For this tutorial, use `MicroserviceProject`.
-3. Enter a unique host name, for example, `abc-devhost`. This host name is your app's route, `abc-devhost.mybluemix.net`
+3. Optional. Provide tags to classify your app. For more information, see [Working with tags](/docs/resources?topic=resources-tag).
 4. Select your language and framework. Some starter kits might be available only in one language.
 5. Select your pricing plan. There is a free option that you can use for this tutorial.
 6. Click **Create**.
 
-## Step 3. Add resources (Optional)
-{: #add-services}
+## Step 3. Add services (Optional)
+{: #resources-microservice}
 
-You can add resources that enhance your app with the cognitive power of Watson, add mobile services, or security services. For this tutorial, add a place to manage your data.
+You can add services that enhance your app with the cognitive power of Watson, add mobile services, or security services. For this tutorial, add a place to manage your data.
 
-1. From the app service window, select click **Add Resource**.
+1. On the **App details** page, click **Add service**.
 2. Select the kind of service you want. For example, select **Data** > **Next** > **Cloudant** > **Next**.
 3. Select your pricing plan. There is a free option that you can use for this tutorial.
 4. Click **Create**.
 
-## Step 4. Create a DevOps toolchain
-{: #add-toolchain}
+## Step 4. Deploy your app
+{: #toolchain-microservice}
 
-Enabling a toolchain creates a team-based development environment for your app. When you create a toolchain, the app service creates a Git repository, where you can view source code, clone your app, and create and manage issues. You also have access to a dedicated Git lab environment and a continuous delivery pipeline. They're customized to the deployment platform you choose, whether it's Kubernetes or Cloud Foundry.
+When you select a deployment target, a DevOps toolchain is automatically created for your app. The toolchain includes a Delivery Pipeline that indicates your app’s deployment status. The new app that is generated is pushed to a GitLab repo that is part of the toolchain.
 
-Continuous delivery is enabled for some applications. You can enable continuous delivery to automate builds, tests, and deployments through the Delivery Pipeline and GitHub.
+Enabling a DevOps toolchain creates a team-based development environment for your app. When you create a toolchain, the app service creates a Git repository, where you can view source code, clone your app, and create and manage issues. You also have access to a dedicated GitLab environment and a continuous delivery pipeline. They're customized to the deployment target that you select, whether it's [Kubernetes](/docs/containers?topic=containers-getting-started), [Cloud Foundry](/docs/cloud-foundry-public?topic=cloud-foundry-public-about-cf), [{{site.data.keyword.cfee_full_notm}}](/docs/cloud-foundry?topic=cloud-foundry-about), or [Virtual Server (VSI)](/docs/vsi?topic=virtual-servers-getting-started-tutorial).
 
-1. From the app service window, click **Deploy to Cloud**.
-2. Select a deployment method. Set up your deployment method according to the instructions for the method you choose.
+All toolchains that are created from an {{site.data.keyword.cloud_notm}} Developer dashboard are configured for automatic deployment.
+{: note}
 
-    * Deploy to a Kubernetes Cluster. Create a cluster of hosts, called worker nodes, to deploy and manage highly available application containers. You can create a cluster or deploy to an existing cluster.
+To select your deployment target and configure continuous delivery, complete these steps:
 
-    * Deploy with Cloud Foundry, where you don’t need to manage the underlying infrastructure.
+1. On the App details page, click **Configure continuous delivery**.
+2. Select a deployment target. Set up your deployment target according to the instructions for the target that you select:
+  * **Deploy to [IBM Kubernetes Service](/docs/containers?topic=containers-app)**. This option creates a cluster of hosts, called worker nodes, to deploy and manage highly available app containers. You can create a cluster or deploy to an existing cluster.
+  * **Deploy to Cloud Foundry**. This option deploys your cloud-native app without you needing to manage the underlying infrastructure. If your account has access to {{site.data.keyword.cfee_full_notm}}, you can select a deployer type of either **[Public Cloud](/docs/cloud-foundry-public?topic=cloud-foundry-public-deployingapps)** or **[Enterprise Environment](/docs/cloud-foundry?topic=cloud-foundry-deploy_apps)**, which you can use to create and manage isolated environments for hosting Cloud Foundry apps exclusively for your enterprise.
+  * **Deploy to a Virtual Server**. This option provisions a virtual server instance, loads an image that includes your app, creates a DevOps toolchain, and initiates the first deployment cycle for you. For more information, see [Deploying apps to a virtual server](/docs/vsi?topic=virtual-servers-deploying-to-a-virtual-server).
+
+    VSI deployment is available for some starter kits. To use this feature, go to the [{{site.data.keyword.cloud_notm}} dashboard](https://{DomainName}), and click **Create an app** in the **Apps** tile.
+    {: note}
 
 ## Step 5. Build and run the app locally
-{: #build-run}
+{: #build-run-microservice}
 
 Deploying your app to the cloud in the last step created a toolchain. A toolchain creates a Git repository for your app where you can find the code there. Follow these steps to access your repo. You can build the app locally for testing before you push it to the cloud.
 
-1. From the app service window, click **Download Code** or **Clone your repo** to work with your code locally.
+1. On the **App details** page, click **Download code** or **Clone your repo** to work with your code locally.
 2. Import the app to your integrated development environment.
 3. Modify the code.
-4. Set up [Git authentication](/docs/services/ContinuousDelivery/git_working.html#git_authentication) by adding a personal access token.
-5. Log in to the {{site.data.keyword.Bluemix}} command line interface. If your organization uses federated logins, use the `-sso` option.
+4. Set up [Git authentication](/docs/services/ContinuousDelivery?topic=ContinuousDelivery-git_working#git_authentication) by adding a personal access token.
+5. Log in to the {{site.data.keyword.cloud_notm}} command line interface. If your organization uses federated logins, use the `-sso` option.
 
   ```bash
   ibmcloud login -sso
@@ -108,9 +121,10 @@ Deploying your app to the cloud in the last step created a toolchain. A toolchai
 10.  Open your browser to `http://localhost:3000`. Your port number might be different depending on your chosen runtime.
 
 ## Step 6. Deploy your app
-{: #deploy}
+{: #deploy-microservice}
 
 ### Deploy by using a toolchain
+{: #deploy-microservice-toolchain}
 
 You can deploy your app to {{site.data.keyword.cloud_notm}} several ways, but a DevOps toolchain is the best way to deploy production apps. With a DevOps toolchain, you can easily automate deployments to lots of environments and quickly add monitoring, logging, and alert services to help manage your app as it grows.
 
@@ -118,11 +132,12 @@ With a properly configured toolchain, a build-deploy cycle automatically starts 
 
 You can also manually deploy your app from your DevOps toolchain:
 
-1. From the App Details window, click **View Toolchain**.
+1. On the **App details** page, click **View toolchain**.
 
-2. Click **Delivery pipeline** where you can start builds, manage deployment and view logs and history.
+2. Click **Delivery Pipeline** where you can start builds, manage deployment and view logs and history.
 
 ### Deploy by using the {{site.data.keyword.dev_cli_short}}
+{: #deploy-microservice-cli}
 
 To deploy your app to Cloud Foundry, enter the following command:
 
@@ -138,7 +153,19 @@ ibmcloud dev deploy --target <container>
 ```
 {: pre}
 
-## Step 7. Verify that your app is running
-{: #verify}
+For more information about deploying your app, see [Deploying apps](/docs/apps?topic=creating-apps-deploying-apps).
 
-After you deploy your app, the DevOps pipeline or command line points you to the URL for your app, for example `abc-devhost.mybluemix.net`. Go to that URL in your browser.
+## Step 7. Verify that your app is running
+{: #verify-microservice}
+
+After you deploy your app, the Delivery Pipeline or command line points you to the URL for your app.
+
+1. From your DevOps toolchain, click **Delivery Pipeline**, and then select **Deploy Stage**.
+2. Click **View logs and history**.
+3. In the log file, find the app's URL:
+
+    At the end of the log file, search for the word `urls` or `view`. For example, you might see a line in the log file that's similar to `urls: my-app-devhost.mybluemix.net` or `View the application health at: http://<ipaddress>:<port>/health`.
+
+4. Go to the URL in your browser. If the app is running, a message that includes `Congratulations` or `{"status":"UP"}` is displayed.
+
+If you are using the command line, run the [`ibmcloud dev view`](/docs/cli/idt?topic=cloud-cli-idt-cli#view) command to view the URL of your app. Then, go to the URL in your browser.

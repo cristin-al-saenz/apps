@@ -1,9 +1,12 @@
 ---
+
 copyright:
+  years: 2018, 2019
+lastupdated: "2019-06-18"
 
-  years: 2018
+keywords: apps, deploy, deploying apps, toolchain, cli, cloud, devops, deployment, git, push
 
-lastupdated: "2018-07-25"
+subcollection: creating-apps
 
 ---
 
@@ -13,72 +16,126 @@ lastupdated: "2018-07-25"
 {:codeblock: .codeblock}
 {:pre: .pre}
 {:tip: .tip}
+{:note: .note}
+{:important: .important}
 
 # アプリのデプロイ
-{: #deploy}
+{: #deploying-apps}
 
-アプリは、ツールチェーンやコマンド・ライン・インターフェースを使用してデプロイできます。 ツールチェーンは、ツール統合の集合です。 コマンド・ライン・インターフェースは、アプリとサービス・インスタンスをデプロイするための簡単な方法です。
+DevOps ツールチェーンを使用して、アプリケーションを {{site.data.keyword.cloud}} にデプロイできます。 DevOps ツールチェーンを使用すると、多数の環境へのデプロイメントを自動化して、成長するアプリの管理に役立つモニタリング、ロギング、洞察、およびアラートの各サービスを素早く追加することができます。 継続的デリバリーの構成とアプリのデプロイは、{{site.data.keyword.cloud_notm}} Web コンソールかコマンド・ライン・インターフェース (CLI) のいずれかを使用して行うことができます。
 {: shortdesc}
 
-## ツールチェーンを使用したアプリのデプロイ
-{: #toolchains_getting_started}
+DevOps ツールチェーンは、アプリ用のチーム・ベースの開発環境を提供します。 ツールチェーンの作成時に、アプリ・サービスによって Git リポジトリーが作成されます。このリポジトリーでは、ソース・コードの表示、アプリの複製、および問題の作成と管理を行うことができます。 また、専用の GitLab 環境と、継続的デリバリー・パイプラインにアクセスすることもできます。 選択したデプロイメント・ターゲットが、[Kubernetes](/docs/containers?topic=containers-getting-started)、[Cloud Foundry](/docs/cloud-foundry-public?topic=cloud-foundry-public-about-cf)、[{{site.data.keyword.cfee_full_notm}}](/docs/cloud-foundry?topic=cloud-foundry-about)、または[仮想サーバー (VSI)](/docs/vsi?topic=virtual-servers-getting-started-tutorial) のどれであっても、それに合わせてこれらはカスタマイズされています。
 
-オープン・ツールチェーンは、{{site.data.keyword.Bluemix}} の Public 環境および Dedicated 環境で使用可能です。 ツールチェーンの作成方法には、テンプレートを使用した作成と、アプリからの作成の 2 とおりの方法があります。 ツールチェーンについて詳しくは、[ツールチェーンの作成](../services/ContinuousDelivery/toolchains_working.html#toolchains_getting_started)を参照してください。
+## {{site.data.keyword.cloud_notm}} コンソールの使用
+{: deploy-console}
 
-適切に構成されたツールチェーンを使用すると、アプリのデプロイは非常に簡単です。リポジトリー内のマスター・ブランチへのマージが行われるたびに、ビルドおよびデプロイのサイクルが自動的に開始されます。
+{{site.data.keyword.cloud_notm}} は、DevOps ツールチェーンを使用して継続的デリバリーの構成とアプリのデプロイを行える Web コンソールを提供します。
 
-{{site.data.keyword.Bluemix}} 開発者ダッシュボードから作成されたツールチェーンはすべて、自動デプロイメント用に構成されています。
-{: tip}
+### 始める前に
+{: deploy-console-before}
 
-## コマンド・ライン・インターフェースを使用したアプリのデプロイ
-{: #cli}
+始めに、[{{site.data.keyword.cloud_notm}} ダッシュボード](https://{DomainName}){: new_window} ![外部リンク・アイコン](../icons/launch-glyph.svg "外部リンク・アイコン")を使用して、[アプリを作成し](/docs/apps?topic=creating-apps-getting-started)、[サービスを追加します](/docs/apps?topic=creating-apps-getting-started#resources-getting-started)。
 
-IBM Cloud は、堅固な CLI のほかに、CLI と統合されるプラグインおよび開発者ツール拡張機能も提供します。
+### アプリの自動デプロイ
+{: deploy-console-auto}
 
-{{site.data.keyword.Bluemix_notm}} コマンド・ライン・インターフェースを使用して、アプリおよびサービス・インスタンスをデプロイします。
-{:shortdesc}
+{{site.data.keyword.cloud_notm}} 開発者ダッシュボードから作成されたツールチェーンはすべて、自動デプロイメント用に構成されています。
+{: note}
 
-開始する前に、[{{site.data.keyword.Bluemix_notm}} コマンド・ライン・インターフェースをダウンロードしてインストールします](/docs/cli/index.html)。
+1. **「アプリの詳細」**ページで**「継続的デリバリーの構成 (Configure continuous delivery)」**をクリックします。
+2. デプロイメント・ターゲットを選択します。 選択したターゲットの説明に従って、デプロイメント・ターゲットをセットアップします。
+  * **IBM Kubernetes Service にデプロイします**。 このオプションは、高可用性のアプリ・コンテナーをデプロイして管理するためのワーカー・ノードというホスト・クラスターを作成します。 クラスターを作成したり、既存のクラスターにデプロイしたりすることができます。 詳しくは、[Kubernetes クラスターへのアプリのデプロイ](/docs/containers?topic=containers-app)を参照してください。
+  * **Cloud Foundry にデプロイ**します。 このオプションはクラウド・ネイティブなアプリをデプロイします。基礎にあるインフラストラクチャーを管理する必要はありません。 アカウントに {{site.data.keyword.cfee_full_notm}} に対するアクセス権限がある場合は、エンタープライズ専用の Cloud Foundry アプリをホストするための分離環境を作成および管理するために使用できる、**パブリック・クラウド**または**エンタープライズ環境**のデプロイヤー・タイプを選択できます。 詳しくは、[Cloud Foundry パブリックへのアプリのデプロイ](/docs/cloud-foundry-public?topic=cloud-foundry-public-deployingapps)と[{{site.data.keyword.cfee_full_notm}} へのアプリのデプロイ](/docs/cloud-foundry?topic=cloud-foundry-deploy_apps)を参照してください。
+  * **仮想サーバーにデプロイします**。 このオプションによって、仮想サーバー・インスタンスがプロビジョンされ、アプリを含むイメージがロードされ、DevOps ツールチェーンが作成され、最初のデプロイメント・サイクルが開始されます。 詳しくは、[仮想サーバーへのアプリのデプロイ](/docs/vsi?topic=virtual-servers-deploying-to-a-virtual-server)を参照してください。
 
-<p>
-<a class="xref" href="https://console.bluemix.net/docs/cli/index.html#overview" target="_blank" title="(新しいタブまたはウィンドウで開きます)"><img class="image" src="images/btn_bx_commandline.svg" alt="IBM Cloud Developer Tools のダウンロード" /></a>
-</p>
+    VSI デプロイメントは、一部のスターター・キットで使用できます。この機能を使用するには、[{{site.data.keyword.cloud_notm}} ダッシュボード](https://{DomainName})に移動し、**「アプリ」**タイルで**「アプリの作成」**をクリックします。
+    {: note}
 
-**制約事項:** コマンド・ライン・ツールは Cygwin ではサポートされていません。 このツールは Cygwin コマンド・ライン・ウィンドウ以外のコマンド・ライン・ウィンドウで使用してください。
-{:prereq}
+### 手動によるアプリのデプロイ
+{: deploy-console-manual}
 
-コマンド・ライン・インターフェースをインストールした後、以下の手順を開始できます。
+正しく構成されたツールチェーンを使用すると、リポジトリー内のマスター・ブランチへのマージが行われるたびに、ビルドとデプロイのサイクルが自動的に開始されます。 
 
-  1. {: download} 開発環境をセットアップするため、アプリのコードを新規ディレクトリーにダウンロードします。
+DevOps ツールチェーンからアプリを手動でデプロイすることもできます。
 
-    <a class="xref" href="http://bluemix.net" target="_blank" img class=“image” src=“images/btn_starter-code.svg” alt=“Download application code” title="(新しいタブまたはウィンドウで開く)"></a>
+1. **「アプリの詳細」**ページで**「ツールチェーンの表示」**をクリックします。
+2. **「Delivery Pipeline」**をクリックします。ここで、ビルドの開始、デプロイメントの管理、およびログと履歴の表示を行うことができます。
+
+一部のアプリでは継続的デリバリーは自動で有効になります。 継続的デリバリーを有効にして、Delivery Pipeline と GitHub を使用したビルド、テスト、およびデプロイメントを自動化することができます。
+
+詳しくは、以下を参照してください。
+* [ビルドとデプロイ](/docs/services/ContinuousDelivery?topic=ContinuousDelivery-deliverypipeline_build_deploy)
+* [ツールチェーンの作成](/docs/services/ContinuousDelivery?topic=ContinuousDelivery-toolchains_getting_started)
+
+## {{site.data.keyword.dev_cli_short}} CLI の使用
+{: #deploy-cli}
+
+{{site.data.keyword.cloud_notm}} は、開発者のワークフローを簡素化するのに役立つ堅固な CLI とプラグインを提供します。 アプリの構成方法に応じて、{{site.data.keyword.cloud_notm}} アプリを 2 つの方法のいずれかでデプロイできます。
+
+### 始める前に
+{: #deploy-cli-before}
+
+開始する前に、[{{site.data.keyword.cloud_notm}} CLI をダウンロードしてインストールします](/docs/cli?topic=cloud-cli-getting-started)。
+
+CLI は、Cygwin によってサポートされていません。 このツールは Cygwin コマンド・ライン・ウィンドウ以外のウィンドウで使用してください。
+{: important}
+
+  1. 開発環境をセットアップするため、アプリのコードを新規ディレクトリーにダウンロードします。
 
   2. コードが置かれているディレクトリーに移動します。
 
-  <pre class="pre"><code class="hljs">cd <var class="keyword varname">your_new_directory</var></code></pre>
+  3.  アプリ・コードを更新します。 例えば、{{site.data.keyword.cloud_notm}} サンプル・アプリを使用していて、アプリに `src/main/webapp/index.html` ファイルが含まれている場合は、それを変更して「`Thanks for creating ...`」行を編集できます。 アプリを {{site.data.keyword.cloud_notm}} にデプロイする前に、ローカルで実行できることを確認してください。
 
-  3.  アプリ・コードを変更します。 例えば、{{site.data.keyword.Bluemix_notm}} サンプル・アプリケーションを使用していて、アプリに `src/main/webapp/index.html` ファイルが含まれている場合、それを編集して「Thanks for creating ...」を何か別の内容に変更します。 アプリを {{site.data.keyword.Bluemix_notm}} に戻してデプロイする前に、ローカルで稼働することを確認してください。
+    `README.md` ファイルを確認してください。このファイルには、ビルド手順などの詳細情報が含まれています。
 
-    `manifest.yml` ファイルをメモします。 アプリを {{site.data.keyword.Bluemix_notm}} にデプロイする際、このファイルを使用してアプリケーションの URL、メモリー割り振り、インスタンス数、およびその他の重要なパラメーターを判別します。
+    アプリが Liberty アプリである場合、再度デプロイする前にビルドする必要があります。
+    {: note}
 
-    該当する場合にはビルド手順などの詳細が含まれている `README.md` ファイルにも注意を払ってください。
+  4. IBMid を使用して {{site.data.keyword.cloud_notm}} CLI にログインします。 複数のアカウントを持っている場合、使用するアカウントを選択するように求めるプロンプトが出されます。 `-r` フラグを使用して地域を指定していない場合、地域も選択しなければなりません。
+    ```
+    ibmcloud login
+    ```
+    {: codeblock}
+  
+    資格情報が拒否された場合、統合 ID を使用している可能性があります。 フェデレーテッド ID を使用してログインするには、`--sso` フラグを使用します。 詳しくは、[フェデレーテッド ID を使用したログイン](/docs/iam/federated_id?topic=iam-federated_id#federated_id)を参照してください。
+    {: tip}
 
-    注: アプリケーションが Liberty アプリである場合、再デプロイする前にビルドする必要があります。
+### アプリの自動デプロイ
+{: #deploy-cli-auto}
 
-  4. {{site.data.keyword.Bluemix_notm}} に接続し、ログインします。
+アプリ用の DevOps ツールチェーンをまだ作成しておらず、アプリがまだ Git リポジトリー内にない場合、[`ibmcloud dev edit`](/docs/cli/idt?topic=cloud-cli-idt-cli#edit) コマンドを実行できます。 「DevOps の構成」のプロンプトに従い、新しいツールチェーンにデプロイします (また、新規 GitLab リポジトリーも作成します)。
 
-  <pre class="pre"><code class="hljs">ibmcloud api https://api.<span class="keyword" data-hd-keyref="DomainName">DomainName</span></code></pre>
+アプリ用の DevOps ツールチェーンが作成されると、新規ビルドのデプロイは、ツールチェーン内のリポジトリーにコードをコミットしてプッシュするだけの単純なものになります。 
 
-  <pre class="pre"><code class="hljs">ibmcloud login -u <var class="keyword varname" data-hd-keyref="user_ID">username</var> -o <var class="keyword varname" data-hd-keyref="org_name">org_name</var> -s <var class="keyword varname" data-hd-keyref="space_name">space_name</var></code></pre>
+1. コミットする変更を準備します。
+    ```
+    git add .
+    ```
+2. 短いメッセージを付けて変更をコミットします。
+    ```
+    git commit -m "made changes"
+    ```
+3. マスター・ブランチ上のコミットをリモート・リポジトリーにプッシュします。
+    ```
+    git push origin master
+    ```
+4. {{site.data.keyword.cloud_notm}} コンソールからアプリの DevOps ツールチェーンを表示します。 アプリ・ディレクトリーから [`ibmcloud dev console`](/docs/cli/idt?topic=cloud-cli-idt-cli#console) コマンドを実行することで、{{site.data.keyword.cloud_notm}} コンソールの**「アプリの詳細」**ページからツールチェーンの詳細を表示できます。
+5. ツールチェーン内のパイプラインを表示して、新規ビルドが開始されたことを確認します。
 
-  フェデレーテッド ID を使用する場合は、`-sso` オプションを追加してください。
+### 手動によるアプリのデプロイ
+{: #deploy-cli-manual}
 
-  <pre class="pre"><code class="hljs">ibmcloud login  -o <var class="keyword varname" data-hd-keyref="org_name">org_name</var> -s <var class="keyword varname" data-hd-keyref="space_name">space_name</var> -sso</code></pre>
+[`ibmcloud dev deploy`](/docs/cli/idt?topic=cloud-cli-idt-cli#deploy) コマンドを使用して、アプリを {{site.data.keyword.cloud_notm}} に手動でデプロイできます。
 
-  **注**: `username`、`org_name`、`space_name` の値にスペースが含まれている場合は、値のまわりに単一引用符または二重引用符を追加する必要があります。例えば、`-o "my org"` のように指定します。
+  ```
+  ibmcloud dev deploy
+  ```
+  {: codeblock}
 
-  5. `ibmcloud dev deploy` コマンドを使用して、<var class="keyword varname">your_new_directory</var> からアプリを {{site.data.keyword.Bluemix_notm}} に再デプロイします。 詳しくは、[CLI の資料](/docs/cli/idt/commands.html#deploy)を参照してください。
+### 関連情報
+{: #deploy-cli-related}
 
-  <pre class="pre"><code class="hljs">ibmcloud dev deploy <var class="keyword varname" data-hd-keyref="app_name">app_name</var></code></pre>
+CLI を使用した {{site.data.keyword.cloud_notm}} へのアプリのデプロイについて詳しくは、以下を参照してください。
 
-  6. https://<var class="keyword varname" data-hd-keyref="app_url">app_url</var>.<span class="keyword" data-hd-keyref="APPDomain">AppDomainName</span> を表示してアプリにアクセスします。
+* [{{site.data.keyword.dev_cli_short}} CLI を使用した {{site.data.keyword.cloud_notm}} 環境へのデプロイ](https://www.ibm.com/cloud/blog/deploying-to-ibm-cloud-environments-with-ibm-cloud-developer-tools-cli){: new_window} ![外部リンク・アイコン](../icons/launch-glyph.svg "外部リンク・アイコン")

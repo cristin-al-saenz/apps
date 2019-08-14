@@ -1,71 +1,92 @@
 ---
 
 copyright:
-  years: 2017, 2018
-lastupdated: "2018-08-21"
+  years: 2018, 2019
+lastupdated: "2019-06-20"
+
+keywords: getting started apps, create app tutorial, add services, deploy apps, create app, app tutorial
+
+subcollection: creating-apps
 
 ---
 
 {:shortdesc: .shortdesc}
-{:tip: .tip}
 {:new_window: target="_blank"}
 {:codeblock: .codeblock}
+{:pre: .pre}
 {:screen: .screen}
+{:tip: .tip}
 
 # Getting started tutorial
-{: #create}
+{: #getting-started}
 
-In {{site.data.keyword.Bluemix}}, you can build enterprise-level mobile and web applications and take advantage of cloud extensions that are hosted by {{site.data.keyword.Bluemix_notm}}. You can use the {{site.data.keyword.Bluemix}} console and command line tools to build, run, and deploy your apps. Get started in two ways: create an app with a starter kit that manages the process for you, or if you know what you want, build your app with the resources you need.
-{:shortdesc}
+You can build enterprise-ready mobile and web applications in {{site.data.keyword.cloud}} and take advantage of cloud extensions that are hosted by {{site.data.keyword.cloud_notm}}. You have several options for getting started. Create an app with a starter kit that manages the process for you, or if you know what you want, start from scratch and build your app with the resources you need, or use your existing repository and bring your own code.
+{: shortdesc}
 
-You can use a starter kit to quickly get your app started and prepare it for future development. Choose a starter kit and programming language, create an app, and then set up a DevOps toolchain to automatically deploy your app. You can also download the code for immediate inspection.
+Whether you have [existing code](/docs/apps/tutorials?topic=creating-apps-tutorial-byoc) that you want to modernize and bring to the cloud, or you're developing a [brand new application](/docs/apps/tutorials?topic=creating-apps-tutorial-starterkit), you can tap into the rapidly growing ecosystem of available services and runtime frameworks in {{site.data.keyword.cloud_notm}}.
 
-Starter kits are available in many categories, including:
+Do you need help with deciding where to start? The following diagram provides an overview for creating apps, whether you use a starter kit or bring your own code to {{site.data.keyword.cloud_notm}}.
 
-* [Watson ![External link icon](../icons/launch-glyph.svg "External link icon")](https://console.bluemix.net/developer/watson/dashboard){:new_window}
-* [Apple ![External link icon](../icons/launch-glyph.svg "External link icon")](https://console.bluemix.net/developer/appledevelopment/dashboard){:new_window}
-* [Mobile ![External link icon](../icons/launch-glyph.svg "External link icon")](https://console.bluemix.net/developer/mobile/dashboard){:new_window}
-* [Web App ![External link icon](../icons/launch-glyph.svg "External link icon")](https://console.bluemix.net/developer/appservice/dashboard){:new_window}
-* [Security ![External link icon](../icons/launch-glyph.svg "External link icon")](https://console.bluemix.net/developer/security/dashboard){:new_window}
-<!--* [Watson Data Platform developer console](https://console.bluemix.net/developer/dataplatform)-->
-* [Finance ![External link icon](../icons/launch-glyph.svg "External link icon")](https://console.bluemix.net/developer/finance/dashboard){:new_window}
+![Developer experience overview](images/dev-journey.png "Overview of creating apps in {{site.data.keyword.cloud_notm}}"){: caption="Figure 1. Overview of creating apps in {{site.data.keyword.cloud_notm}}" caption-side="bottom"}
 
 ## Before you begin
+{: #prereqs-getting-started}
 
-[Sign up ![External link icon](../icons/launch-glyph.svg "External link icon")](https://console.bluemix.net){: new_window} for an {{site.data.keyword.cloud_notm}} account. Enter your email, name, company, region, and phone number.
+You can create your app by using the {{site.data.keyword.cloud_notm}} console or the command-line interface (CLI). If you want to use the CLI, see the [installing steps](/docs/cli?topic=cloud-cli-getting-started).
 
-You don't need a credit card to sign up for a free account. But entering a credit card gives you access to more resources and makes it easier for you to get all {{site.data.keyword.cloud_notm}} offers.
+## Step 1. Create your app
+{: #create-getting-started}
 
-## Step 1. Create an app
-{: #project}
+Create an app by selecting one of the following entry points:
 
-1. Click the **Menu** icon ![Menu icon](../icons/icon_hamburger.svg) > **Web Apps**.
+* [Preconfigured starter kits](/docs/apps/tutorials?topic=creating-apps-tutorial-starterkit) are use-case-specific and give you production-ready apps in various programming languages and architectural patterns.
+* [Basic starter kits](/docs/apps/tutorials?topic=creating-apps-tutorial-scratch) let you build your app by selecting the type of app (mobile or backend), language and framework, services, and deployment target.
+* [Bring your own code](/docs/apps/tutorials?topic=creating-apps-tutorial-byoc) by linking to your own existing content repository. Your app and Docker image must be located in the same repo.
+* [{{site.data.keyword.dev_cli_long}} command-line interface (CLI)](/docs/apps?topic=creating-apps-create-deploy-app-cli) lets you create and deploy your app by using the CLI.
+* Browse or search the [{{site.data.keyword.cloud_notm}} catalog](https://{DomainName}/catalog){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon") for apps and services that you can create and start using today.
+* [IBM Developer code patterns ![External link icon](../icons/launch-glyph.svg "External link icon")](https://developer.ibm.com/patterns/){:new_window} help you quickly create your app and deploy it to {{site.data.keyword.cloud_notm}}. For more information, see [Code patterns](/docs/apps/tutorials?topic=creating-apps-tutorial-codepattern).
 
-2. Click **Get Started** in the **Start from the Web** section.
+## Step 2. Add services
+{: #resources-getting-started}
 
-3. Select a starter kit of your choice, read the details, and click **Create**.
+When you use a starter kit to create your app, the mandatory services are automatically created for you. You can connect more services to your app in the console from the **App details** page, which is displayed as soon as you create the app.
 
-   To view what's included in the starter kit, expand the tile on the App Service Starter Kits dashboard.
-   {: tip}
+If you want to add services after your app is created, go to the [{{site.data.keyword.cloud_notm}} dashboard ![External link icon](../../icons/launch-glyph.svg "External link icon")](https://{DomainName}), locate your app, and then click your app's name. The **App details** page is displayed, and you can create a service instance or connect existing services.
 
-4. Name your app, select your language, and click **Create**.
+Or, you can run the following command to add a service to your app by using the CLI. You can select an existing service that is already enabled on your account, or you can add a service.
+```
+ibmcloud dev edit
+```
+{: codeblock}
 
-   Great start! You just created an app.
-
-   To inspect your code, click **Download Code** on the app details page. Check the `README.md` file in the downloaded compressed file to find out whether you need to take more actions to get your starter app up and running.
-   {: tip}
-
-## Step 2. Add resources
-{: #addResources}
-
-Most starter kits instruct {{site.data.keyword.cloud_notm}} to automatically provision resources for you. You can also associate more resources with your app by clicking **Add Resource** on the app details page.
-
-To develop and run your app locally, use the [{{site.data.keyword.dev_cli_notm}}](../cli/idt/index.html)
-{: tip}
+For more information, see [Adding a service to your app](/docs/apps?topic=creating-apps-add-resource).
 
 ## Step 3. Deploy your app
-{: #deploy}
+{: #deploy-getting-started}
 
-Click **Deploy to Cloud** on the app details page, select a deployment method, for example Kubernetes Cluster or Cloud Foundry App, and click **Create**. {{site.data.keyword.cloud_notm}} automatically creates an open toolchain complete with a Git repository and continuous delivery pipeline. Open the pipeline component of your new toolchain to start the initial build and deploy process so that you can see your new app in minutes.
+You can deploy your app by using the console or the CLI.
 
-You're now set for iterative development and continuous delivery.
+### Using the console
+{: #console-getting-started}
+
+To deploy your app by using the console, complete the following steps:
+
+1. On the **App details** page, click **Configure continuous delivery**.
+2. Select a deployment target, select the toolchain settings, and click **Create**. {{site.data.keyword.cloud_notm}} automatically creates an open toolchain complete with a Git repository and continuous delivery pipeline.
+3. Open the pipeline stage of your new toolchain to view the build and deployment process so that you can view your new app in minutes.
+
+For more information, see [Deploying apps](/docs/apps?topic=creating-apps-deploying-apps).
+
+### Using the CLI
+{: #cli-getting-started}
+
+To deploy your app by using the CLI, run the `ibmcloud dev deploy` command. For more information, see [Creating and deploying apps by using the CLI](/docs/apps?topic=creating-apps-create-deploy-app-cli).
+
+Now you're set for iterative development and continuous delivery.
+
+For more information about deploying your app, see [Deploying apps](/docs/apps?topic=creating-apps-deploying-apps).
+
+## Related information
+{: #related-getting-started}
+
+[Programming guides](https://{DomainName}/docs/home/build){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon") are available per language to help you get up and running. You have many options for hosting your apps with {{site.data.keyword.cloud_notm}} infrastructure from {{site.data.keyword.baremetal_short}} to running as a serverless function.

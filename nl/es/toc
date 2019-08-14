@@ -2,70 +2,81 @@
 {:navgroup: .navgroup}
 {:topicgroup: .topicgroup}
 
-{: .toc subcollection="creating-apps" audience="service" href="/docs/apps/index.html"}
+{: .toc subcollection="creating-apps" audience="platform" href="docs/apps?topic=creating-apps-getting-started" path="apps"}
 Creación de apps
 
     {: .navgroup id="learn"}
     index.md
-    development_process.md
     best-practice.md
     patterns.md
+
+    {: .topicgroup}
+    Enlaces relacionados
+        [Estrategias para aplicaciones resistentes](/tutorials/solution-tutorials-strategies-for-resilient-applications){: new_window}
+        [Despliegue continuo en Kubernetes](/tutorials/solution-tutorials-continuous-deployment-to-kubernetes){: new_window}
     {: .navgroup-end}
 
     {: .navgroup id="howto"}
     {: .topicgroup}
     Creación de apps
-        tutorials/tutorial_web.md
-        tutorials/tutorial_bff.md
-        tutorials/tutorial_custom.md
+        tutorials/tutorial_starter-kit.md
+        starter-kits.md
+        tutorials/tutorial_scratch.md
+        tutorials/tutorial_byoc.md
+        create-deploy-cli.md
+        tutorials/tutorial_code-pattern.md
         tutorials/tutorial_microservice.md
         tutorials/tutorial_mobile.md
-        create-deploy-cli.md
-        deploying/functions.md
+        functions.md
+        tutorials/tutorial_mendix_getting_started.md
+        [¿Desea utilizar un lenguaje?](https://{DomainName}/docs/home/build)
 
     {: .topicgroup}
-    Despliegue e integración de apps
+    Despliegue de apps
+        hosting.md
         dep-app-tool.md
-        vsi-deploy.md
-        deploying/containers.md
-        deploying/crypto.md
+        tutorials/tutorial_starter_kube.md
+        tutorials/tutorial_byoc_kube.md
+        tutorials/tutorial_mendix_kubernetes.md
 
+    {: .topicgroup}
+    Configuración
+        reqnsi.md
+        creds_overview.md
+        mngdomains.md
+        secapps.md
 
-    reqnsi.md
-    mngapps.md
-    updapps.md
-    secapps.md
-    building-apps.md
-    hosting.md
+    {: .topicgroup}
+    Integración de apps con DevOps
+        toolchains.md
+        insights.md
+        monitor.md
     {: .navgroup-end}
 
     {: .navgroup id="reference"}
-    [Referencia de línea de mandatos de IBM Cloud Developer Tools](https://console.bluemix.net/docs/cli/idt/commands.html)
+    [Plugin de línea de mandatos de IBM Cloud Developer Tools](/docs/cli?topic=cloud-cli-getting-started)
 
     {: .topicgroup}
     Paneles de control de desarrollador de IBM Cloud
-        [Apple](https://console.bluemix.net/developer/appledevelopment/dashboard)
-        [Finance](https://console.bluemix.net/developer/finance/dashboard)
-        [Mobile](https://console.bluemix.net/developer/mobile/dashboard)
-        [Security](https://console.bluemix.net/developer/security/dashboard)
-        [Watson](https://console.bluemix.net/developer/watson/dashboard)
-        [Web Apps](https://console.bluemix.net/developer/appservice/dashboard)
+        [Apple](https://cloud.ibm.com/developer/appledevelopment/dashboard)
+        [Finance](https://cloud.ibm.com/developer/finance/dashboard)
+        [Mobile](https://cloud.ibm.com/developer/mobile/dashboard)
+        [Security](https://cloud.ibm.com/developer/security/dashboard)
+        [Watson](https://cloud.ibm.com/developer/watson/dashboard)
+        [Web Apps](https://cloud.ibm.com/developer/appservice/dashboard)
 
     {: .topicgroup}
-    Contenidos de la app
-        projects/compose_file.md
-        projects/java_project_contents.md
-        projects/node_project_contents.md
-        projects/python_project_contents.md
-        projects/swift_project_contents.md
+    Guías de programación de IBM Cloud
+        [Go](/go/go-getting-started)
+        [Java](/java/java-getting-started)
+        [Swift](/swift/swift-getting-started)
+        [Node](/node/nodejs-node-getting-started)
 
     at_events_devx.md
     {: .navgroup-end}
 
     {: .navgroup id="help"}
     ts_apps.md
-    [Canal de herramientas de desarrollador de IBM Cloud Slack](https://slack-invite-ibm-cloud-tech.mybluemix.net/)
-    [StackOverflow](http://stackoverflow.com/search?q=bluemix-dev-services+ibm-bluemix)
-    [Referencia de API de funciones de Cloud](https://console.bluemix.net/apidocs/functions)
-    [SDK móvil](https://console.bluemix.net/docs/openwhisk/openwhisk_mobile_sdk.html#mobile-sdk)
+    faqs.md
+    [Canal de Slack developer-tools de IBM Cloud](https://slack-invite-ibm-cloud-tech.mybluemix.net/)
     {: .navgroup-end}

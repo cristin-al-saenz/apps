@@ -1,8 +1,12 @@
 ---
 
 copyright:
-  years: 2015, 2018
-lastupdated: "2018-10-10"
+  years: 2015, 2019
+lastupdated: "2019-03-15"
+
+keywords: apps, web app, starter kit, App Service, developer tools, DevOps toolchain
+
+subcollection: creating-apps
 
 ---
 
@@ -13,63 +17,68 @@ lastupdated: "2018-10-10"
 {:pre: .pre}
 
 # Creación de una app web básica con un kit de inicio
-{: #tutorial}
+{: #tutorial-webapp}
 
-{{site.data.keyword.Bluemix}} ofrece muchos kits de inicio para ayudarle a codificar rápidamente. Elija un idioma, una infraestructura y herramientas de kits de inicio de App Service para empezar a trabajar con una app personalizada preconfigurada. En esta guía de aprendizaje, se le guiará por los pasos para instalar las herramientas que necesita y, a continuación, para crear y ejecutar la app localmente y desplegarla en la nube.
+{{site.data.keyword.cloud}} ofrece muchos kits de inicio para ayudarle a codificar rápidamente. Elija un idioma, una infraestructura y herramientas de kits de inicio de App Service para empezar a trabajar con una aplicación personalizada preconfigurada. En esta guía de aprendizaje, se le guiará por los pasos para instalar las herramientas que necesita y, a continuación, para crear y ejecutar la app localmente y desplegarla en la nube.
 {: shortdesc}
 
 ## Paso 1. Instalar las herramientas
-{: #install-tools}
+{: #prereqs-webapp}
 
-Instale las [herramientas del desarrollador](/docs/cli/index.html).
+Instale las [herramientas del desarrollador](/docs/cli?topic=cloud-cli-ibmcloud-cli).
 
 Docker se instala como parte de las herramientas de desarrollador. Docker debe estar en ejecución para que funcionen los mandatos de compilación. Debe crear una cuenta de Docker, ejecutar la app de Docker e iniciar la sesión.
 
 ## Paso 2. Seleccionar un kit de inicio
-{: #create-devex}
+{: #create-webapp}
 
-Los kits de inicio están disponibles en muchos idiomas e infraestructuras de la {{site.data.keyword.dev_console}} de {{site.data.keyword.cloud}}. Seleccione el idioma que se ajuste mejor al inicio de su proyecto.
+Los kits de inicio están disponibles en muchos idiomas e infraestructuras en la {{site.data.keyword.dev_console}} de {{site.data.keyword.cloud_notm}}. Seleccione el idioma que se ajuste mejor al inicio de su proyecto.
 
-1. En la página [kits de inicio ![Icono de enlace externo](../../icons/launch-glyph.svg "Icono de enlace externo")](https://console.bluemix.net/developer/appservice/starter-kits/) de la {{site.data.keyword.dev_console}}, seleccione un kit de inicio para su idioma.
-2. Especifique el nombre de la app y un nombre de host exclusivo, por ejemplo, `abc-devhost`. Este nombre de host es la ruta de la app, `abc-devhost.mybluemix.net`
-3. Seleccione el idioma y la infraestructura. Es posible que algunos kits de inicio solo estén disponibles en un idioma.
-4. Seleccione el plan de precios. Hay una opción gratuita que puede utilizar para esta guía de aprendizaje.
-5. Pulse **Crear**.
+1. En la página [kits de inicio](https://{DomainName}/developer/appservice/starter-kits/){: new_window} ![Icono de enlace externo](../../icons/launch-glyph.svg "Icono de enlace externo") de la {{site.data.keyword.dev_console}}, seleccione un kit de inicio para su lenguaje.
+2. Especifique el nombre de la app y un nombre de host exclusivo, por ejemplo, `abc-devhost`. Este nombre de host es la ruta de la app, `abc-devhost.mybluemix.net`.
+3. Opcional. Proporcione etiquetas para clasificar la app. Para obtener más información, consulte [Cómo trabajar con etiquetas](/docs/resources?topic=resources-tag).
+4. Seleccione el idioma y la infraestructura. Es posible que algunos kits de inicio solo estén disponibles en un idioma.
+5. Seleccione el plan de precios. Hay una opción gratuita que puede utilizar para esta guía de aprendizaje.
+6. Pulse **Crear**.
 
-## Paso 3. Añadir recursos (opcional)
-{: #add-services}
+El dominio compartido predeterminado es `mybluemix.net`, pero `appdomain.cloud` es otra opción de dominio que puede utilizar. Para obtener más información sobre cómo migrar a `appdomain.cloud`, consulte
+[Actualización del dominio](/docs/apps/tutorials?topic=creating-apps-update-domain).
+{: tip}
 
-Puede añadir recursos para mejorar la app con la potencia cognitiva de Watson, para añadir servicios móviles o servicios de seguridad. Para esta guía de aprendizaje, añada un lugar para gestionar los datos.
+## Paso 3. Añadir servicios (opcional)
+{: #resources-webapp}
 
-1. En la ventana de servicio de la app, pulse **Añadir recurso**.
+Puede añadir servicios para mejorar la app con la potencia cognitiva de Watson, para añadir servicios móviles o servicios de seguridad. Para esta guía de aprendizaje, añada un lugar para gestionar los datos.
+
+1. En la página **Detalles de la app**, pulse **Añadir servicios**.
 2. Seleccione el tipo de servicio que desee. Por ejemplo, seleccione **Datos** > **Siguiente** > **Cloudant** > **Siguiente**.
 3. Seleccione el plan de precios. Hay una opción gratuita que puede utilizar para esta guía de aprendizaje.
 4. Pulse **Crear**.
 
 ## Paso 4. Crear una cadena de herramientas de DevOps
-{: #add-toolchain}
+{: #toolchain-webapp}
 
-La habilitación de una cadena de herramientas crea un entorno de desarrollo en equipo para la app. Cuando se crea una cadena de herramientas, el servicio de app crea un repositorio Git, donde puede ver el código fuente, clonar la app y crear y gestionar problemas. También es posible acceder a un entorno de laboratorio Git dedicado y a un conducto de entrega continua. Se personalizan en la plataforma de despliegue que elija, ya sea Kubernetes o Cloud Foundry.
+La habilitación de una cadena de herramientas crea un entorno de desarrollo en equipo para la app. Cuando se crea una cadena de herramientas, el servicio de app crea un repositorio Git, donde puede ver el código fuente, clonar la app y crear y gestionar problemas. También es posible acceder a un entorno de laboratorio Git dedicado y a un conducto de entrega continua. Están personalizados para el destino de despliegue que elija, que puede ser [Kubernetes](/docs/containers?topic=containers-getting-started), [Cloud Foundry](/docs/cloud-foundry-public?topic=cloud-foundry-public-about-cf), [{{site.data.keyword.cfee_full_notm}}](/docs/cloud-foundry?topic=cloud-foundry-about) o [Servidor virtual (VSI)](/docs/vsi?topic=virtual-servers-getting-started-with-virtual-servers).
 
 La entrega continua está habilitada para algunas aplicaciones. Puede habilitar la entrega continua para automatizar compilaciones, pruebas y despliegues a través de Delivery Pipeline y GitHub.
 
-1. En la ventana de servicio de la app, pulse **Desplegar en la nube**.
-2. Seleccione un método de despliegue. Configure el método de despliegue de acuerdo con las instrucciones para el método que elija.
+Pulse **Configurar entrega continua** en la página **Detalles de la app**, seleccione un destino de
+despliegue y pulse **Crear**. {{site.data.keyword.cloud_notm}} crea de forma automática una cadena de herramientas abierta que se completa con un repositorio de Git y un conducto de entrega continua.
 
-    * Desplegar en un clúster Kubernetes. Cree un clúster de hosts, denominados nodos de trabajador, para desplegar y gestionar contenedores de aplicaciones de alta disponibilidad. Puede crear un clúster o desplegar en un clúster existente.
+Después de seleccionar el destino de despliegue, abra el componente del conducto de la nueva cadena de herramientas para iniciar el proceso de compilación y despliegue inicial de forma que pueda visualizar en unos minutos su nueva app.
 
-    * Desplegar con Cloud Foundry, donde no necesita gestionar la infraestructura subyacente.
+Para obtener más información, consulte [Creación de cadenas de herramientas](/docs/services/ContinuousDelivery?topic=ContinuousDelivery-toolchains_getting_started).
 
 ## Paso 5. Crear y ejecutar la app localmente
-{: #build-run}
+{: #build-run-webapp}
 
 El despliegue de la app en la nube en el último paso ha creado una cadena de herramientas. Una cadena de herramientas crea un repositorio Git para la app donde puede encontrar el código allí. Siga estos pasos para acceder a su repositorio. Puede compilar la app localmente para probarla antes de enviarla por push a la nube.
 
-1. En la ventana de servicio de la app, pulse **Descargar código** o **Clonar el repositorio** para trabajar con el código localmente.
+1. En la página **Detalles de la app**, pulse **Descargar código** o **Clonar el repositorio** para trabajar con el código de manera local.
 2. Importe la app a su entorno de desarrollo integrado.
 3. Modifique el código.
-4. Configure [Autenticación de Git](/docs/services/ContinuousDelivery/git_working.html#git_authentication) añadiendo una señal de acceso personal.
-5. Inicie sesión en la interfaz de línea de mandatos de {{site.data.keyword.Bluemix}}. Si su organización utiliza inicios de sesión federados, utilice la opción `-sso`.
+4. Configure [Autenticación de Git](/docs/services/ContinuousDelivery?topic=ContinuousDelivery-git_working#git_authentication) añadiendo una señal de acceso personal.
+5. Inicie sesión en la interfaz de línea de mandatos de {{site.data.keyword.cloud_notm}}. Si su organización utiliza inicios de sesión federados, utilice la opción `-sso`.
 
   ```bash
   ibmcloud login -sso
@@ -83,7 +92,7 @@ El despliegue de la app en la nube en el último paso ha creado una cadena de he
   ```
   {: pre}
 
-7.  Obtener las credenciales.
+7. Obtener las credenciales.
 
   ```bash
   ibmcloud dev get-credentials
@@ -104,12 +113,13 @@ El despliegue de la app en la nube en el último paso ha creado una cadena de he
   ```
   {: pre}
 
-10.  Abra el navegador en `http://localhost:3000`. Es posible que el número de puerto sea distinto en función del tiempo de ejecución elegido.
+10. Abra el navegador en `http://localhost:3000`. Es posible que el número de puerto sea distinto en función del tiempo de ejecución elegido.
 
 ## Paso 6. Desplegar la app
-{: #deploy}
+{: #deploy-webapp}
 
 ### Desplegar utilizando una cadena de herramientas
+{: #deploy-webapp-toolchain}
 
 Puede desplegar la app en {{site.data.keyword.cloud_notm}} de varias formas, pero una cadena de herramientas de DevOps es la mejor forma de desplegar apps de producción. Con una cadena de herramientas de DevOps, puede automatizar fácilmente despliegues en muchos entornos y añadir rápidamente servicios de supervisión, de registro y de alertas para ayudar a gestionar su app a medida que crece.
 
@@ -117,27 +127,37 @@ Con una cadena de herramientas correctamente configurada, un ciclo de despliegue
 
 También puede desplegar manualmente su app desde su cadena de herramientas de DevOps:
 
-1. En la ventana Detalles de la app, pulse **Ver cadena de herramientas**.
-
+1. En la página **Detalles de la app**, pulse **Ver cadena de herramientas**.
 2. Pulse **Conducto de entrega** donde puede iniciar compilaciones, gestionar el despliegue y ver registros e historiales.
 
+Para obtener más información, consulte [Creación y despliegue](/docs/services/ContinuousDelivery?topic=ContinuousDelivery-deliverypipeline_build_deploy).
+
 ### Desplegar utilizando el {{site.data.keyword.dev_cli_short}}
+{: #deploy-webapp-cli}
 
 Para desplegar la app en Cloud Foundry, especifique el mandato siguiente:
-
 ```
 ibmcloud dev deploy
 ```
 {: pre}
 
 Para desplegar la app en un clúster de Kubernetes, especifique el mandato siguiente:
-
 ```
 ibmcloud dev deploy --target <container>
 ```
 {: pre}
 
 ## Paso 7. Verificar que la app se está ejecutando
-{: #verify}
+{: #verify-webapp}
 
-Después de desplegar la app, el conducto o la línea de mandatos de DevOps le apunta al URL para la app, por ejemplo `abc-devhost.mybluemix.net`. Vaya a ese URL en el navegador.
+Después de desplegar la app, el conducto de entrega o la línea de mandatos le apunta al URL para la app.
+
+1. Desde la cadena de herramientas de DevOps, pulse **Delivery Pipeline** y luego seleccione **Etapa de despliegue**.
+2. Pulse **Ver registros e historial**.
+3. En el archivo de registro, busque el URL de la aplicación:
+
+    Al final del archivo de registro, busque la palabra `urls` o `ver`. Por ejemplo, es posible que vea una línea en el archivo de registro parecida a `urls: my-app-devhost.mybluemix.net` o a `Ver el estado de la aplicación en: http://<ipaddress>:<port>/health`.
+
+4. Vaya al URL en el navegador. Si la app se está ejecutando, se muestra un mensaje que incluye `Enhorabuena` o `{"status":"UP"}`.
+
+Si utiliza la línea de mandatos, ejecute el mandato [`ibmcloud dev view`](/docs/cli/idt?topic=cloud-cli-idt-cli#view) para ver el URL de la app. Luego vaya al URL en el navegador.
